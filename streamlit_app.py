@@ -212,7 +212,7 @@ def get_system_prompt():
         return "당신은 친근하고 재미있는 친구 같은 챗봇입니다. 사용자와 따뜻한 대화를 나누세요."
 
 # ============= UI 메인 섹션 =============
-st.markdown("<h1 class='stTitle'>😊 제목학원 : 나를 브랜딩 하기</h1>", unsafe_allow_html=True)
+st.markdown("<h1 class='stTitle'>제목학원 : 나를 브랜딩 하기</h1>", unsafe_allow_html=True)
 st.markdown("<p class='subtitle'>당신만의 개성을 찾아 독특한 별명을 만들어보세요</p>", unsafe_allow_html=True)
 
 # ============= 별명 생성 섹션 =============
