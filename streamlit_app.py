@@ -10,123 +10,128 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ============= 인스타 감성 CSS 스타일 =============
+# ============= 신데렐라 동화 분위기 CSS 스타일 =============
 st.markdown("""
 <style>
     * {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: 'Segoe UI', 'Noto Sans', Tahoma, Geneva, Verdana, sans-serif;
     }
     
     .main {
-        background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+        background: linear-gradient(135deg, #faf5ff 0%, #ffe6f5 50%, #f5f0ff 100%);
+        min-height: 100vh;
     }
     
     .stTitle {
         text-align: center;
-        color: #1a1a1a;
-        font-size: 2.5em !important;
+        font-size: 2.8em !important;
         font-weight: 700;
         margin-bottom: 0.2em;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #d8a5e3 0%, #e8b4d0 50%, #c9a0d4 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+        user-select: none;
     }
     
     .subtitle {
         text-align: center;
-        color: #888;
-        font-size: 0.95em;
+        color: #b89ac9;
+        font-size: 1.1em;
         margin-bottom: 2em;
         letter-spacing: 1px;
+        font-weight: 500;
     }
     
     .input-section {
-        background: white;
-        border-radius: 15px;
-        padding: 2rem;
-        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        background: rgba(255, 255, 255, 0.98);
+        border-radius: 25px;
+        padding: 2.5rem;
+        box-shadow: 0 8px 32px rgba(216, 165, 227, 0.15);
         margin-bottom: 2rem;
-        border: 1px solid rgba(102, 126, 234, 0.1);
+        border: 2px solid rgba(216, 165, 227, 0.25);
     }
     
     .chat-container {
-        background: white;
-        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.98);
+        border-radius: 25px;
         padding: 1.5rem;
-        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
-        border: 1px solid rgba(102, 126, 234, 0.1);
+        box-shadow: 0 8px 32px rgba(216, 165, 227, 0.15);
+        border: 2px solid rgba(216, 165, 227, 0.25);
     }
     
     .stChatMessage {
-        border-radius: 10px;
+        border-radius: 15px;
         padding: 1rem;
         margin-bottom: 0.8rem;
     }
     
     /* User 메시지 스타일 */
     [data-testid="chat-message"][data-test-user-msg] {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #d8a5e3 0%, #e8b4d0 100%);
         color: white;
+        border-radius: 15px;
     }
     
     /* Assistant 메시지 스타일 */
     [data-testid="chat-message"]:has([data-icon="bot"]) {
-        background: #f0f0f0;
-        border-left: 4px solid #667eea;
+        background: linear-gradient(135deg, rgba(216, 165, 227, 0.12) 0%, rgba(232, 180, 208, 0.12) 100%);
+        border-left: 4px solid #d8a5e3;
+        border-radius: 15px;
     }
     
     .stButton > button {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #d8a5e3 0%, #e8b4d0 100%);
         color: white;
         border: none;
-        border-radius: 8px;
-        padding: 0.7rem 2rem;
+        border-radius: 12px;
+        padding: 0.8rem 2.5rem;
         font-weight: 600;
         transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        box-shadow: 0 6px 20px rgba(216, 165, 227, 0.3);
+        font-size: 1.05em;
     }
     
     .stButton > button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(216, 165, 227, 0.4);
     }
     
     .stTextInput > div > div > input {
-        border-radius: 8px;
-        border: 2px solid rgba(102, 126, 234, 0.2);
-        padding: 0.7rem;
+        border-radius: 12px;
+        border: 2px solid rgba(216, 165, 227, 0.3);
+        padding: 0.8rem;
         font-size: 1em;
+        background: linear-gradient(135deg, rgba(250, 245, 255, 0.9) 0%, rgba(255, 230, 245, 0.9) 100%);
     }
     
     .stTextArea > div > div > textarea {
-        border-radius: 8px;
-        border: 2px solid rgba(102, 126, 234, 0.2);
-        padding: 0.7rem;
+        border-radius: 12px;
+        border: 2px solid rgba(216, 165, 227, 0.3);
+        padding: 0.8rem;
+        background: linear-gradient(135deg, rgba(250, 245, 255, 0.9) 0%, rgba(255, 230, 245, 0.9) 100%);
     }
     
     .stTextInput > div > div > input:focus,
     .stTextArea > div > div > textarea:focus {
-        border-color: #667eea;
-        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
-    }
-    
-    .success-message {
-        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-        color: #667eea;
-        padding: 1rem;
-        border-radius: 8px;
-        border-left: 4px solid #667eea;
-        margin-bottom: 1.5rem;
+        border-color: #d8a5e3;
+        box-shadow: 0 0 0 0.3rem rgba(216, 165, 227, 0.2);
     }
     
     .stChatInput {
-        border-radius: 10px;
+        border-radius: 15px;
     }
     
     .stChatInput input {
-        border-radius: 8px;
-        border: 2px solid rgba(102, 126, 234, 0.2);
+        border-radius: 12px;
+        border: 2px solid rgba(216, 165, 227, 0.3);
+        background: linear-gradient(135deg, rgba(250, 245, 255, 0.95) 0%, rgba(255, 230, 245, 0.95) 100%);
+    }
+    
+    .label-large {
+        font-size: 1.6em;
+        font-weight: 600;
+        color: #b89ac9;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -207,36 +212,39 @@ def get_system_prompt():
         return "당신은 친근하고 재미있는 친구 같은 챗봇입니다. 사용자와 따뜻한 대화를 나누세요."
 
 # ============= UI 메인 섹션 =============
-st.markdown("<h1 class='stTitle'>✨ 제목학원 나를 브랜딩 하기 ✨</h1>", unsafe_allow_html=True)
+st.markdown("<h1 class='stTitle'>😊 제목학원 : 나를 브랜딩 하기</h1>", unsafe_allow_html=True)
 st.markdown("<p class='subtitle'>당신만의 개성을 찾아 독특한 별명을 만들어보세요</p>", unsafe_allow_html=True)
 
 # ============= 별명 생성 섹션 =============
 if not st.session_state.nickname_created:
     st.markdown("<div class='input-section'>", unsafe_allow_html=True)
-    st.markdown("### 🎨 당신을 표현하기")
     
     col1, col2 = st.columns(2, gap="large")
     
     with col1:
+        st.markdown("<p class='label-large'>💝 좋아하는 것을 알려주세요</p>", unsafe_allow_html=True)
         interests = st.text_input(
-            "🌟 좋아하는 것을 알려주세요",
+            label="좋아하는 것",
             placeholder="예: 핸드폰, 아니메, 요리, 음악 등...",
-            key="interests_input"
+            key="interests_input",
+            label_visibility="collapsed"
         )
     
     with col2:
+        st.markdown("<p class='label-large'>🌙 지금의 상황을 알려주세요</p>", unsafe_allow_html=True)
         situation = st.text_area(
-            "📍 지금의 상황을 알려주세요",
+            label="지금의 상황",
             placeholder="예: 대학생, 직장인, 강아지와 함께 살고있어요, 요즘 공부중이야 등...",
             height=110,
-            key="situation_input"
+            key="situation_input",
+            label_visibility="collapsed"
         )
     
-    if st.button("🎭 별명 만들기", use_container_width=True):
+    if st.button("✨ 별명 만들기 ✨", use_container_width=True):
         if not interests or not situation:
             st.warning("⚠️ 좋아하는 것과 현재 상황을 모두 입력해주세요!")
         else:
-            with st.spinner("당신의 별명을 만들고 있어요... ✨"):
+            with st.spinner("마법의 별명을 만들고 있어요... ✨"):
                 try:
                     nickname_response = generate_nickname(interests, situation)
                     st.session_state.user_interests = interests
@@ -258,7 +266,7 @@ if not st.session_state.nickname_created:
 if st.session_state.nickname_created:
     st.markdown("<div class='chat-container'>", unsafe_allow_html=True)
     
-    st.markdown("### 💬 대화하기")
+    st.markdown("<h3 style='text-align: center; color: #a855f7;'>💬 마법의 대화 시간</h3>", unsafe_allow_html=True)
     
     # 기존 메시지 표시
     for message in st.session_state.messages:
@@ -296,6 +304,7 @@ if st.session_state.nickname_created:
     st.markdown("</div>", unsafe_allow_html=True)
     
     # 초기화 버튼
+    st.markdown("<br>", unsafe_allow_html=True)
     if st.button("🔄 다시 시작", use_container_width=True):
         st.session_state.messages = []
         st.session_state.nickname = None
